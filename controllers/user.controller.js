@@ -88,20 +88,23 @@ const displaySignin=((req,res)=>{
 const uploadFile =(req,res)=>{
     const file = req.body.myfile
     
+  
+    
     cloudinary.v2.uploader.upload(file,(err,result)=>{
         if (err) {
             console.log(err)
-            res.send({message:`UPLOAD FAILED`})
+            res.send({message:`UPLOAD FAILED`,status:false})
             
         } else {
-            const form = new imageModel(result.secure_url)
+            const form = new imageModel({image_url:result.secure_url,userId:req.body.id})
             form.save((err)=>{
                 if (err) {
                     console.log(`UNABLE TO SAVE`)
                     
                 } else {
                     console.log(`SUCCESSFUL`)
-                    res.send({message:`UPLOAD SUCCESSFUL`,image:result.secure_url})
+                    res.send({message:`UPLOAD SUCCESSFUL`,image:result.secure_url,status:true})
+                    console.log(form)
                     
                 }
             })
@@ -114,4 +117,16 @@ const uploadFile =(req,res)=>{
     })
 
 }
-module.exports = { displaySignup, displaySignin, displayOne,uploadFile}
+const displayUpload = (req,res)=>{
+    imageModel.find((err,result)=>{
+        if (err) {
+            console.log(`NO IMAGE FOUND`)
+            res.send({message:"COULD NOT FIND ANY IMAGE"})
+            
+        } else {
+            res.send({message:"IMAGE FOUND",result})
+            
+        }
+    })
+}
+module.exports = { displaySignup, displaySignin, displayOne,uploadFile,displayUpload}
