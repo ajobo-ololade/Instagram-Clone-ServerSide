@@ -1,15 +1,15 @@
 const express = require("express")
 
 const app = express()
-app.use(express.static(__dirname+'/build'))
+// app.use(express.static(__dirname+'/build'))
 const cors = require ("cors")
 
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended:true,limit:'50mb'}))
 app.use(bodyParser.json({limit:'50mb'}))
-app.get('/*',(req,res)=>{
-    res.sendFile(__dirname+"build/index.html")
-})
+// app.get('/*',(req,res)=>{
+//     res.sendFile(__dirname+"build/index.html")
+// })
 app.use(cors())
 require('dotenv').config()
 const userRouter= require('./routes/user.route')
