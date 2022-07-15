@@ -8,4 +8,6 @@ router.post("/signin",userController.displaySignin)
 router.post('/uploads',userController.uploadFile)
 router.get('/displayimg',userController.displayUpload)
 router.get('/profile',userController.displayProfile)
+router.get('/details',userController.displayDb)
+router.get('/update', userController.displayUpdate)
 module.exports= router

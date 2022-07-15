@@ -56,6 +56,22 @@ const userSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    website:{
+        type:String,
+        require:true
+    },
+    Bio:{
+        type:String,
+        require:true
+    },
+    phoneNumber:{
+        type:String,
+        require:true
+    },
+    gender:{
+        type:String,
+        require:true
+    },
     fullname:{
         type:String,
         require:true
@@ -68,11 +84,7 @@ const userSchema = mongoose.Schema({
         type:String,
         require:true,
     },
-    date:{
-        type:Date,
-        default:Date.now
-
-    },
+    
     Post:[imageSchema],
     ProfilePicture:{
         require:true,
@@ -80,6 +92,11 @@ const userSchema = mongoose.Schema({
     },
     Followers:[followersSchema],
     Following:[followingSchema],
+    date:{
+        type:Date,
+        default:Date.now
+
+    },
     
 
 

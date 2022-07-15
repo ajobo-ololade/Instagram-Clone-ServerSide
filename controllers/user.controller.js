@@ -145,6 +145,7 @@ const displaySignin=((req,res)=>{
                 
             }
             
+            
         }
     })
     
@@ -245,4 +246,31 @@ const displayUpload = (req,res)=>{
         }
     })
 }
-module.exports = { displaySignup, displaySignin, displayOne,uploadFile,displayUpload,displayProfile,displaynav}
+const displayDb = (req,res)=>{
+    console.log(req.body)
+    const allUser = req.body
+    userModel.find(allUser,(err,result)=>{
+        if (err) {
+            console.log(`Couldn't get details`)
+            res.send({message:`I can't find details`,status:false})
+            
+        } else {
+            res.send({message:`Details foud`,status:true,result})
+            
+        }
+
+    })
+
+}
+const displayUpdate =(req,res)=>{
+    userModel.updateMany((err,result)=>{
+        if (err) {
+            console.log(`Could not update user details`)
+            res.send({message:`Error`,status:false})
+        } else {
+
+            
+        }
+    })
+}
+module.exports = { displaySignup, displaySignin, displayOne,uploadFile,displayUpload,displayProfile,displaynav,displayDb,displayUpdate}
